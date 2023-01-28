@@ -1,0 +1,202 @@
+{
+	"info": {
+		"_postman_id": "31004583-11bd-4cce-91b6-f98d3d70a71f",
+		"name": "OMLogic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11142098"
+	},
+	"item": [
+		{
+			"name": "setup wallet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"set admin token\", function () {",
+							"    const data=pm.response.json();",
+							"    pm.collectionVariables.set(\"wallet_id\", data.walletId);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"balance\": 251,\n    \"name\": \"Deadpool\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/wallet",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"wallet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "wallet Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/wallet/{{wallet_id}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"wallet",
+						"{{wallet_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "product list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/product",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "credit wallet",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\": 250.6,\n    \"description\": \"Bonus Money\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/wallet/{{wallet_id}}/transaction",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"wallet",
+						"{{wallet_id}}",
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get wallet  transaction list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/wallet/{{wallet_id}}/transaction?page=0&limit=5",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"wallet",
+						"{{wallet_id}}",
+						"transaction"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "purchase product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productId\": \"63d4ef753c4a4e201afa57a7\",\n    \"description\": \"For new Year\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/wallet/{{wallet_id}}/purchase",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"wallet",
+						"{{wallet_id}}",
+						"purchase"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost:8080/api",
+			"type": "string"
+		},
+		{
+			"key": "wallet_id",
+			"value": "63d50b72a751709dc44a8d20",
+			"type": "string"
+		}
+	]
+}

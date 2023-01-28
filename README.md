@@ -37,6 +37,6 @@ npm i
 ```bash
 # make sure you are on root directory of project
 npm start
-# Server runs on http://localhost:8080
+# Server runs on http://localhost:8080/api
 
 ```
