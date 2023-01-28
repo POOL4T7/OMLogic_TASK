@@ -2,13 +2,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+require('dotenv').config();
 
 const mongodb = require('./config/db');
 const WalletRoute = require('./routes/WalletRoutes');
 const ProductRoute = require('./routes/ProductRoutes');
 
-
 mongodb();
+
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(
   bodyParser.urlencoded({
@@ -42,5 +43,5 @@ const PORT = process.env.PORT || 8080;
 const NODE_ENV = process.env.NODE_ENV;
 
 app.listen(PORT, () => {
-  console.log(`server is listing in NODE_ENV on PORT `);
+  console.log(`server is listing in ${NODE_ENV} on ${PORT} `);
 });

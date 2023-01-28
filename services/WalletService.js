@@ -75,7 +75,7 @@ const WalletService = {
       if (transactionResult.length > 0) {
         await session.commitTransaction();
         data = {
-          balance: transactionResult[0].balance,
+          balance: walletResult.balance,
           transactionId: transactionResult[0]._id,
           type,
           description,

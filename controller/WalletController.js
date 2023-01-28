@@ -6,7 +6,10 @@ const WalletController = {
   setUpWallet: async function (req, res) {
     try {
       const { balance, name } = req.body;
-      const data = await WalletService.addWallet({ balance, name });
+      const data = await WalletService.addWallet({
+        balance: balance.toFixed(4),
+        name,
+      });
       const response = {
         walletId: data._id,
         balance: data.balance,
@@ -47,7 +50,7 @@ const WalletController = {
   creditWallet: async function (req, res) {
     try {
       const walletId = req.params.walletId;
-      const amount = req.body.amount;
+      const amount = req.body.amount.toFixed(4);
       const description = req.body.description;
 
       const data = await WalletService.updateWallet(
@@ -113,6 +116,7 @@ const WalletController = {
         amount: 1,
         _id: 0,
       };
+
       const products = await ProductService.getProducts(
         {
           _id: productId,
@@ -121,6 +125,16 @@ const WalletController = {
       );
       if (products.length > 0) {
         const { amount } = products[0];
+        const wallet = await WalletService.getWallet(
+          { _id: walletId },
+          { balance: 1 }
+        );
+        if (wallet) {
+          const { balance } = wallet;
+          if (balance < amount || balance <= 1) {
+            return res.status(422).json({ msg: 'Insufficent Balance' });
+          }
+        }
         const data = await WalletService.updateWallet(
           walletId,
           -amount,
