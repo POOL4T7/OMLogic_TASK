@@ -1,0 +1,28 @@
+{
+  "name": "omlogic_task",
+  "version": "1.0.0",
+  "description": "OMLogic Job Assignment",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/POOL4T7/OMLogic_TASK.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/POOL4T7/OMLogic_TASK/issues"
+  },
+  "homepage": "https://github.com/POOL4T7/OMLogic_TASK#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.9.0",
+    "uuid": "^9.0.0"
+  }
+}
