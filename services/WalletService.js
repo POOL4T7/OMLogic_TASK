@@ -100,7 +100,6 @@ const WalletService = {
     let data;
     try {
       data = await Transaction.find(filter)
-        .populate('walletId', 'name')
         .select(select)
         .sort(sort)
         .skip(skip)
